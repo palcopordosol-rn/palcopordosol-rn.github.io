@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Especial Só Penso Samba</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde: #006b3f;
+      --verde-claro: #3ca36c;
+      --dourado: #d8a338;
+      --creme: #faf6ef;
+      --texto: #1d1d1d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #e8e8e8;
+      font-family: 'Poppins', sans-serif;
+      color: var(--texto);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto 18px;
+      background: white;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+    }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.96)),
+        url('https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=1200&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      padding: 26px 22px 38px;
+    }
+
+    .toplogos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: var(--verde);
+    }
+
+    .title { text-align: center; margin-top: 24px; }
+    .title small { display: block; color: var(--verde-claro); font-weight: 700; letter-spacing: 3px; margin-bottom: 10px; }
+    .title h1 { font-family: 'Playfair Display', serif; font-size: 56px; line-height: 0.95; color: var(--verde); text-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+
+    .artists { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .artist-pill {
+      background: linear-gradient(90deg, var(--verde), #02492b);
+      color: white; padding: 14px 28px; border-radius: 999px; font-size: 28px; font-weight: 700;
+      width: 85%; text-align: center; box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .event-box { margin-top: 30px; background: var(--verde); color: white; border-radius: 24px 24px 0 0; padding: 24px 22px 32px; }
+    .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+    .event-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 18px; padding: 16px; text-align: center; backdrop-filter: blur(4px); }
+    .event-card strong { display: block; font-size: 28px; margin-top: 4px; }
+
+    .address { background: white; color: var(--verde); border-radius: 18px; padding: 18px; font-weight: 600; margin-bottom: 24px; text-align: center; }
+    .slogan { font-family: 'Playfair Display', serif; text-align: center; font-size: 42px; line-height: 1; color: var(--dourado); }
+
+    .index-page { padding: 28px 22px; }
+    .index-page h2 { font-size: 34px; color: var(--verde); margin-bottom: 24px; font-family: 'Playfair Display', serif; }
+
+    .music-list { display: flex; flex-direction: column; gap: 12px; }
+    .music-list a {
+      text-decoration: none; color: var(--texto); background: #f7f7f7; border-left: 5px solid var(--verde);
+      border-radius: 14px; padding: 14px; font-weight: 600; transition: 0.2s; display: flex; justify-content: space-between; align-items: center;
+    }
+    .music-list a:hover { transform: translateX(4px); background: #f0f0f0; }
+    .tom-badge { font-size: 12px; background: var(--dourado); color: white; padding: 2px 8px; border-radius: 6px; }
+
+    .song-page { padding: 24px 18px 32px; }
+    .song-header { background: linear-gradient(135deg, var(--verde), #02492b); border-radius: 24px; padding: 24px 18px; color: white; margin-bottom: 22px; position: relative; }
+    .song-header h2 { font-size: 28px; line-height: 1.1; margin-bottom: 5px; }
+    .song-header p { opacity: 0.9; font-size: 14px; }
+    .header-tom { display: inline-block; margin-top: 8px; background: var(--dourado); padding: 3px 10px; border-radius: 6px; font-weight: 700; }
+
+    .lyrics-frame { border-radius: 18px; overflow: hidden; border: 2px solid #e5e5e5; background: white; box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+    .lyrics-frame iframe { width: 100%; height: 65vh; border: none; }
+
+    .links { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+    .links a { text-decoration: none; padding: 14px; border-radius: 14px; text-align: center; font-weight: 600; color: white; }
+    .btn-back { background: #666; }
+    .btn-yt { background: #c4302b; }
+    .btn-cifra { background: var(--dourado); }
+
+    @media print {
+      body { background: white; }
+      .page { width: 210mm; max-width: none; box-shadow: none; margin: 0; page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="page hero">
+    <div class="toplogos"><span>Natal Bier</span> & <span>Palco Pôr do Sol</span></div>
+    <div class="title">
+      <small>APRESENTAM</small>
+      <h2>Especial</h2>
+      <h1>Só Penso Samba</h1>
+    </div>
+    <div class="artists">
+      <div class="artist-pill">Jones do Samba</div>
+      <div class="artist-pill">Val</div>
+      <div class="artist-pill">Convidados</div>
+    </div>
+    <div class="event-box">
+      <div class="event-grid">
+        <div class="event-card">Maio <strong>23</strong> Sábado</div>
+        <div class="event-card">Abertura <strong>19H</strong> da Casa</div>
+      </div>
+      <div class="address">Rua Leonora Armstrong, 35<br>Ponta Negra — Natal/RN</div>
+      <div class="slogan">Samba, Amigos e Alegria!</div>
+    </div>
+  </section>
+
+  <section class="page index-page" id="repertorio">
+    <h2>Repertório</h2>
+    <div style="background:#f3fbf6; border:2px solid #d8a338; color:#006b3f; padding:15px; border-radius:18px; margin-bottom:20px; font-weight:600; text-align:center; font-size: 14px;">
+      🎶 Clique na música e cante junto!
+    </div>
+    <div class="music-list">
+      <a href="#m1">1. Eu Vou para a Roda de Samba</a>
+      <a href="#m2">2. Não Deixe o Samba Morrer <span class="tom-badge">D#m</span></a>
+      <a href="#m3">3. Retalhos de Cetim</a>
+      <a href="#m4">4. Coisinha do Pai</a>
+      <a href="#m5">5. Vou Festejar</a>
+      <a href="#m6">6. Trem das Onze</a>
+      <a href="#m7">7. O Mundo É um Moinho</a>
+      <a href="#m8">8. Canto das Três Raças</a>
+      <a href="#m9">9. Samba pras Moças <span class="tom-badge">E</span></a>
+      <a href="#m10">10. Mal Acostumada</a>
+      <a href="#m11">11. Só pra Te Encontrar</a>
+      <a href="#m12">12. Amor Perfeito (Ao Vivo)</a>
+      <a href="#m13">13. O Amor da Tua Voz</a>
+      <a href="#m14">14. Preciso Me Encontrar <span class="tom-badge">Dm</span></a>
+      <a href="#m15">15. Marinheiro Só (1982)</a>
+      <a href="#m16">16. De Mais Ninguém</a>
+      <a href="#m17">17. Rosa</a>
+      <a href="#m18">18. Trilha do Amor (Ao Vivo)</a>
+      <a href="#m19">19. Samba de Arerê (Ao Vivo)</a>
+      <a href="#m20">20. Poder da Criação</a>
+      <a href="#m21">21. Papel de Pão <span class="tom-badge">Cm</span></a>
+      <a href="#m22">22. Coisa de Pele <span class="tom-badge">F</span></a>
+      <a href="#m23">23. João e Maria (Ao Vivo)</a>
+      <a href="#m24">24. No Inverno Eu Quero Amor</a>
+      <a href="#m25">25. Pecado Capital</a>
+      <a href="#m26">26. Volta por Cima (1962)</a>
+      <a href="#m27">27. Do Jeito Que a Vida Quer</a>
+      <a href="#m28">28. Deixei na Bahia</a>
+      <a href="#m29">29. Juízo Final</a>
+      <a href="#m30">30. Disritmia</a>
+      <a href="#m31">31. Deixa Eu Te Amar</a>
+      <a href="#m32">32. O Que É, O Que É? <span class="tom-badge">F</span></a>
+      <a href="#m33">33. Flor de Lis (Ao Vivo)</a>
+      <a href="#m34">34. Tanta Saudade</a>
+      <a href="#m35">35. Fato Consumado</a>
+      <a href="#m36">36. Essa Tal Liberdade</a>
+      <a href="#m37">37. Mineirinho (Ao Vivo)</a>
+      <a href="#m38">38. Burguesinha</a>
+      <a href="#m39">39. Que Se Chama Amor (Ao Vivo)</a>
+      <a href="#m40">40. Amigo do Sol, Amigo da Lua</a>
+      <a href="#m41">41. Gostava Tanto de Você</a>
+      <a href="#m42">42. Paisagem da Janela</a>
+      <a href="#m43">43. Frisson</a>
+      <a href="#m44">44. Mas Que Nada <span class="tom-badge">Gm</span></a>
+      <a href="#m45">45. Como Nossos Pais <span class="tom-badge">D</span></a>
+      <a href="#m46">46. O Bêbado e a Equilibrista <span class="tom-badge">A</span></a>
+    </div>
+  </section>
+
+  <section class="page song-page" id="m1">
+    <div class="song-header">
+      <h2>Eu Vou para a Roda de Samba</h2>
+      <p>Original: Jones do Samba | Cantor: Jones do Samba</p>
+    </div>
+    <div class="lyrics-frame"><iframe src="https://www.cifraclub.com.br/jones-do-samba/eu-vou-para-a-roda-de-samba/letra/" loading="lazy"></iframe></div>
+    <div class="links">
+      <a href="#repertorio" class="btn-back">⬅ Voltar</a>
+      <a href="https://www.youtube.com/watch?v=CTjVLwN7FkQ" target="_blank" rel="noopener noreferrer" class="btn-yt">Ver no YouTube</a>
+      <a href="https://www.cifraclub.com.br/jones-do-samba/eu-vou-para-a-roda-de-samba/" target="_blank" rel="noopener noreferrer" class="btn-cifra">Abrir Cifra</a>
+    </div>
+  </section>
+
+  <section class="page song-page" id="m2">
+    <div class="song-header">
+      <h2>Não Deixe o Samba Morrer</h2>
+      <p>Original: Alcione | Cantor: Jones do Samba</p>
+      <span class="header-tom">Tom: D#m</span>
+    </div>
+    <div class="lyrics-frame"><iframe src="https://www.cifraclub.com.br/alcione/nao-deixe-samba-morrer/letra/" loading="lazy"></iframe></div>
+    <div class="links">
+      <a href="#repertorio" class="btn-back">⬅ Voltar</a>
+      <a href="https://www.youtube.com/watch?v=GtEOP1xB250" target="_blank" rel="noopener noreferrer" class="btn-yt">Ver no YouTube</a>
+      <a href="https://www.cifraclub.com.br/alcione/nao-deixe-samba-morrer/" target="_blank" rel="noopener noreferrer" class="btn-cifra">Abrir Cifra</a>
+    </div>
+  </section>
+
+  <section class="page song-page" id="m9">
+    <div class="song-header">
+      <h2>Samba pras Moças</h2>
+      <p>Original: Zeca Pagodinho | Cantor: Jones do Samba</p>
+      <span class="header-tom">Tom: E</span>
+    </div>
+    <div class="lyrics-frame"><iframe src="https://www.cifraclub.com.br/zeca-pagodinho/samba-pras-mocas/letra/" loading="lazy"></iframe></div>
+    <div class="links">
+      <a href="#repertorio" class="btn-back">⬅ Voltar</a>
+      <a href="https://www.youtube.com/watch?v=QGZNRUDSGRI" target="_blank" rel="noopener noreferrer" class="btn-yt">YouTube</a>
+      <a href="https://www.cifraclub.com.br/zeca-pagodinho/samba-pras-mocas/" target="_blank" rel="noopener noreferrer" class="btn-cifra">Cifra</a>
+    </div>
+  </section>
+
+  <section class="page song-page" id="m14">
+    <div class="song-header">
+      <h2>Preciso Me Encontrar</h2>
+      <p>Original: Cartola | Cantor: Jones do Samba</p>
+      <span class="header-tom">Tom: Dm</span>
+    </div>
+    <div class="lyrics-frame"><iframe src="https://www.cifraclub.com.br/cartola/preciso-me-encontrar/letra/" loading="lazy"></iframe></div>
+    <div class="links">
+      <a href="#repertorio" class="btn-back">⬅ Voltar</a>
+      <a href="https://www.youtube.com/watch?v=56mu8KSUYqk" target="_blank" rel="noopener noreferrer" class="btn-yt">YouTube</a>
+      <a href="https://www.cifraclub.com.br/cartola/preciso-me-encontrar/" target="_blank" rel="noopener noreferrer" class="btn-cifra">Cifra</a>
+    </div>
+  </section>
+
+  <section class="page song-page" id="m32">
+    <div class="song-header">
+      <h2>O Que É, O Que É?</h2>
+      <p>Original: Gonzaguinha | Cantor: Jones do Samba</p>
+      <span class="header-tom">Tom: F</span>
+    </div>
+    <div class="lyrics-frame"><iframe src="https://www.cifraclub.com.br/gonzaguinha/o-que-o-que/letra/" loading="lazy"></iframe></div>
+    <div class="links">
+      <a href="#repertorio" class="btn-back">⬅ Voltar</a>
+      <a href="https://www.youtube.com/watch?v=wZL7EnZtBss" target="_blank" rel="noopener noreferrer" class="btn-yt">YouTube</a>
+      <a href="https://www.cifraclub.com.br/gonzaguinha/o-que-o-que/" target="_blank" rel="noopener noreferrer" class="btn-cifra">Cifra</a>
+    </div>
+  </section>
+
+  <section class="page song-page" id="m45">
+    <div class="song-header">
+      <h2>Como Nossos Pais</h2>
+      <p>Original: Elis Regina | Cantor: Rosângela</p>
+      <span class="header-tom">Tom: D</span>
+    </div>
+    <div class="lyrics-frame"><iframe src="https://www.cifraclub.com.br/elis-regina/como-nossos-pais/letra/" loading="lazy"></iframe></div>
+    <div class="links">
+      <a href="#repertorio" class="btn-back">⬅ Voltar</a>
+      <a href="https://www.youtube.com/watch?v=fS_5Z_6V2sE" target="_blank" rel="noopener noreferrer" class="btn-yt">YouTube</a>
+      <a href="https://www.cifraclub.com.br/elis-regina/como-nossos-pais/" target="_blank" rel="noopener noreferrer" class="btn-cifra">Cifra</a>
+    </div>
+  </section>
+
+  <script>
+    // Script adicional para garantir que qualquer link que aponte para fora do domínio 
+    // ou que contenha "http" abra em nova aba, caso não tenha sido marcado manualmente.
+    document.querySelectorAll('a').forEach(link => {
+      const url = link.getAttribute('href');
+      if (url && url.startsWith('http')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  </script>
+
+</body>
+</html>
