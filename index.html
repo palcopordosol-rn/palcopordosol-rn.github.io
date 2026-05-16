@@ -3,161 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Letras - Vagalume API (JSONP)</title>
+    <title>Palco Pôr do Sol - Repertório</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* Cabeçalho Verde Escuro conforme o Print */
+        .header {
+            background-color: #034626;
+            color: white;
             padding: 20px;
-            background-color: #f7f9fc;
-            color: #333;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            position: relative;
         }
-        h2 {
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        .btn-voltar {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contador {
+            opacity: 0.8;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .titulo-musica {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .artista-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nome-artista {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .badge-vocal {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Área Central da Letra */
+        .conteudo-central {
+            flex: 1;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+        .letra-texto {
+            white-space: pre-line;
             text-align: center;
+            line-height: 1.8;
+            font-size: 1.1rem;
             color: #2c3e50;
+            width: 100%;
+            max-width: 500px;
         }
-        .form-group {
+
+        /* Estado de Fallback (Igual ao seu Print Original) */
+        .fallback-container {
+            text-align: center;
+            color: #666666;
+            max-width: 320px;
+        }
+        .fallback-icon {
+            font-size: 3rem;
+            color: #577565;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .fallback-texto {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .btn-vagalume-fallback {
+            display: inline-block;
+            background-color: #034626;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        /* Botões de Ação Inferiores */
+        .botoes-acao {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 0 15px;
             margin-bottom: 15px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
+        .btn-acao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 12px;
-            background-color: #007BFF;
+            border-radius: 8px;
             color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
             cursor: pointer;
+        }
+        .btn-youtube { background-color: #c00000; }
+        .btn-cifra { background-color: #1a4223; }
+        .btn-vagalume { background-color: #034626; }
+
+        /* Botões de Navegação (Anterior / Próxima) */
+        .botoes-navegacao {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 0 15px 25px 15px;
+        }
+        .btn-nav {
+            background-color: #f1f3f2;
+            color: #1a4223;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
             font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #resultado {
-            margin-top: 25px;
-            padding: 20px;
-            background: white;
-            border-radius: 6px;
-            white-space: pre-line;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            line-height: 1.6;
-        }
-        .erro {
-            color: #dc3545;
-            font-weight: bold;
+        .btn-nav:active {
+            background-color: #e2e5e4;
         }
     </style>
 </head>
 <body>
 
-    <h2>Buscar Letra no Vagalume</h2>
-    
-    <div class="form-group">
-        <label for="artista">Artista / Banda:</label>
-        <input type="text" id="artista" placeholder="Ex: Coldplay">
+    <div class="header">
+        <div class="top-bar">
+            <a href="#" class="btn-voltar">← Repertório</a>
+            <div class="contador" id="txt-contador">0 / 0</div>
+        </div>
+        <div class="titulo-musica" id="txt-titulo">Carregando...</div>
+        <div class="artista-container">
+            <div class="nome-artista" id="txt-artista">...</div>
+            <div class="badge-vocal"><i class="fa-solid fa-microphone-lines"></i> Jones</div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="musica">Nome da Música:</label>
-        <input type="text" id="musica" placeholder="Ex: Yellow">
+    <div class="conteudo-central" id="container-letra">
+        </div>
+
+    <div class="botoes-acao">
+        <a href="#" id="link-youtube" target="_blank" class="btn-acao btn-youtube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+        </a>
+        <a href="#" id="link-cifra" target="_blank" class="btn-acao btn-cifra">
+            <i class="fa-solid fa-guitar"></i> Cifra
+        </a>
+        <a href="#" id="link-vagalume" target="_blank" class="btn-acao btn-vagalume">
+            <i class="fa-solid fa-music"></i> Vagalume
+        </a>
     </div>
 
-    <button id="btnBuscar">Buscar Letra</button>
-
-    <div id="resultado" style="display: none;"></div>
+    <div class="botoes-navegacao">
+        <button class="btn-nav" id="btn-anterior">◀ Anterior</button>
+        <button class="btn-nav" id="btn-proxima">Próxima ▶</button>
+    </div>
 
     <script>
-        // 1. Função genérica para realizar requisições via JSONP simulando o comportamento de uma Promise
+        // ==========================================
+        // MOCK DE DADOS (Substitua pela sua lista real de músicas)
+        // ==========================================
+        const repertorio = [
+            { artista: "Exemplo 1", titulo: "Música Um", youtube: "#", cifra: "#" },
+            { artista: "Exemplo 2", titulo: "Música Dois", youtube: "#", cifra: "#" },
+            { artista: "Benito Di Paula", titulo: "Retalhos de Cetim", youtube: "https://youtube.com", cifra: "https://cifraclub.com.br" },
+            // ... Adicione as outras 43 músicas aqui
+        ];
+        
+        // Iniciando no índice 2 correspondente à música "3 / 46" do seu print
+        let indiceAtual = 2; 
+
+        // ==========================================
+        // MOTOR DE REQUISIÇÃO JSONP (Ignora o CORS)
+        // ==========================================
         function fetchJSONP(url, callbackName = 'vagalumeCallback') {
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script');
                 
-                // Define o escopo global que a API vai executar ao responder
                 window[callbackName] = function(data) {
                     resolve(data);
                     cleanup();
                 };
 
-                // Trata falhas de rede ou se a rota não existir
                 script.onerror = function() {
-                    reject(new Error(`Falha ao carregar o script JSONP.`));
+                    reject(new Error("Erro de rede ao carregar script JSONP."));
                     cleanup();
                 };
 
-                // Concatena o parâmetro de callback na URL existente
-                const urlWithCallback = url.includes('?') 
-                    ? `${url}&callback=${callbackName}` 
-                    : `${url}?callback=${callbackName}`;
-
+                const urlWithCallback = url.includes('?') ? `${url}&callback=${callbackName}` : `${url}?callback=${callbackName}`;
                 script.src = urlWithCallback;
                 document.body.appendChild(script);
 
-                // Remove os rastros do script injetado dinamicamente
                 function cleanup() {
-                    if (script.parentNode) {
-                        script.parentNode.removeChild(script);
-                    }
+                    if (script.parentNode) script.parentNode.removeChild(script);
                     delete window[callbackName];
                 }
             });
         }
 
-        // 2. Função principal que monta os parâmetros e consome a API do Vagalume
-        async function buscarLetraVagalume(artista, musica) {
-            const apiKey = ''; // Opcional: Insira sua API key do Vagalume aqui se tiver
-            const url = `https://api.vagalume.com.br/search.php?art=${encodeURIComponent(artista)}&mus=${encodeURIComponent(musica)}&apikey=${apiKey}`;
-            const resultadoDiv = document.getElementById('resultado');
+        // ==========================================
+        // FUNÇÃO PRINCIPAL: GERENCIAMENTO DA TELA
+        // ==========================================
+        async function renderizarMusicaAtual() {
+            const musica = repertorio[indiceAtual];
+            const containerLetra = document.getElementById('container-letra');
 
+            // 1. Atualiza Textos Básicos do Header
+            document.getElementById('txt-contador').innerText = `${indiceAtual + 1} / ${repertorio.length}`;
+            document.getElementById('txt-titulo').innerText = musica.titulo;
+            document.getElementById('txt-artista').innerText = musica.artista;
+
+            // 2. Atualiza Links dos Botões de Ação
+            document.getElementById('link-youtube').href = musica.youtube;
+            document.getElementById('link-cifra').href = musica.cifra;
+            
+            // Link base do Vagalume para usar como fallback
+            const urlFormatadaVagalume = `https://www.vagalume.com.br/${musica.artista.toLowerCase().replace(/ /g, "-")}/${musica.titulo.toLowerCase().replace(/ /g, "-")}.html`;
+            document.getElementById('link-vagalume').href = urlFormatadaVagalume;
+
+            // 3. Estado de carregamento na tela
+            containerLetra.innerHTML = '<div style="color:#666; font-style:italic;">Buscando letra...</div>';
+
+            // 4. Faz a requisição JSONP na API do Vagalume
+            const urlAPI = `https://api.vagalume.com.br/search.php?art=${encodeURIComponent(musica.artista)}&mus=${encodeURIComponent(musica.titulo)}`;
+            
             try {
-                // Atualiza a tela sinalizando o carregamento
-                resultadoDiv.style.display = 'block';
-                resultadoDiv.innerHTML = '<em>Buscando letra...</em>';
+                const resposta = await fetchJSONP(urlAPI, 'callbackVagalume');
 
-                // Executa a chamada contornando o erro de CORS
-                const data = await fetchJSONP(url, 'callbackVagalume');
-                
-                // Valida a resposta do servidor
-                if (data.type === 'exact' || data.type === 'aprox') {
-                    const letra = data.mus[0].text;
-                    const nomeMusica = data.mus[0].name;
-                    const nomeArtista = data.art.name;
-                    
-                    // Renderiza o resultado formatado na página
-                    resultadoDiv.innerHTML = `<h3>${nomeMusica}</h3><strong>${nomeArtista}</strong><hr><p>${letra}</p>`;
+                if (resposta.type === 'exact' || resposta.type === 'aprox') {
+                    // Se encontrou a letra, joga limpa na tela formatada
+                    containerLetra.innerHTML = `
+                        <div class="letra-texto">
+                            ${resposta.mus[0].text}
+                        </div>
+                    `;
                 } else {
-                    resultadoDiv.innerHTML = '<p class="erro">Música não encontrada no acervo do Vagalume.</p>';
+                    // Se não encontrou a música, monta a estrutura idêntica ao seu print
+                    mostrarLayoutErro(containerLetra, urlFormatadaVagalume);
                 }
-            } catch (error) {
-                console.error(error);
-                resultadoDiv.innerHTML = '<p class="erro">Houve um erro na comunicação com o servidor. Tente novamente.</p>';
+            } catch (erro) {
+                // Se der qualquer falha de conexão, aplica o mesmo erro visual
+                mostrarLayoutErro(containerLetra, urlFormatadaVagalume);
             }
         }
 
-        // 3. Captura o clique do botão para iniciar a busca
-        document.getElementById('btnBuscar').addEventListener('click', () => {
-            const artista = document.getElementById('artista').value.trim();
-            const musica = document.getElementById('musica').value.trim();
+        // Função auxiliar que gera o html de erro igualzinho ao seu print
+        function mostrarLayoutErro(container, linkAlternativo) {
+            container.innerHTML = `
+                <div class="fallback-container">
+                    <i class="fa-solid fa-music fallback-icon"></i>
+                    <p class="fallback-texto">Não foi possível carregar a letra automaticamente.<br>Toque para abrir no Vagalume:</p>
+                    <a href="${linkAlternativo}" target="_blank" class="btn-vagalume-fallback">
+                        Ver letra no Vagalume →
+                    </a>
+                </div>
+            `;
+        }
 
-            if (artista && musica) {
-                buscarLetraVagalume(artista, musica);
-            } else {
-                alert('Por favor, preencha os campos de Artista e Música.');
+        // ==========================================
+        // EVENTOS DOS BOTÕES DE NAVEGAÇÃO
+        // ==========================================
+        document.getElementById('btn-anterior').addEventListener('click', () => {
+            if (indiceAtual > 0) {
+                indiceAtual--;
+                renderizarMusicaAtual();
             }
         });
+
+        document.getElementById('btn-proxima').addEventListener('click', () => {
+            if (indiceAtual < repertorio.length - 1) {
+                indiceAtual++;
+                renderizarMusicaAtual();
+            }
+        });
+
+        // Executa a primeira carga assim que a página abrir
+        window.onload = renderizarMusicaAtual;
     </script>
 </body>
 </html>
