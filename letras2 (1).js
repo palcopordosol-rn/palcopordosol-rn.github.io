@@ -2,7 +2,7 @@
 // Arquivo gerado automaticamente via LRCLIB Fuzzy Search
 
 const letras = {
-  1: { letra: 1: { letra: `Pandeiro e um coração
+1: { letra: `Pandeiro e um coração
 Batendo com emoção
 Eu vou para a roda de samba
 Escutar o meu bamba
