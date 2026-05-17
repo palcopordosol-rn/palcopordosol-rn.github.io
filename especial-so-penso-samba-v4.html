@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Especial Só Penso Samba</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="letras2.js"></script>
   <style>
     :root {
       --verde:       #006b3f;
@@ -415,8 +416,7 @@
       font-size: 12px;
     }
     .song-links a.yt   { background: #c8000a; }
-    .song-links a.cifra { background: #1a4a1a; }
-    .song-links a.vagalume { background: var(--verde); }
+
 
     /* ── botões prev/next ── */
     .song-nav-bottom {
@@ -521,52 +521,52 @@
    DADOS DAS 46 MÚSICAS
 ───────────────────────────────────────── */
 const SONGS = [
-  { id:1,  art:"jones-do-samba",    mus:"eu-vou-para-a-roda-de-samba",   titulo:"Eu Vou para a Roda de Samba",   interprete:"Jones do Samba",       cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=CTjVLwN7FkQ",  cifra:"https://www.cifraclub.com.br/jones-do-samba/eu-vou-para-a-roda-de-samba/" },
-  { id:2,  art:"alcione",           mus:"nao-deixe-o-samba-morrer",      titulo:"Não Deixe o Samba Morrer",      interprete:"Alcione",               cantor:"Jones",     tom:"D#m", yt:"https://www.youtube.com/watch?v=GtEOP1xB250",  cifra:"https://www.cifraclub.com.br/alcione/nao-deixe-samba-morrer/" },
-  { id:3,  art:"benito-di-paula",   mus:"retalhos-de-cetim",             titulo:"Retalhos de Cetim",             interprete:"Benito Di Paula",        cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=Z1DVYcUK3PY",  cifra:"https://www.cifraclub.com.br/benito-di-paula/retalhos-de-cetim/" },
-  { id:4,  art:"beth-carvalho",     mus:"coisinha-do-pai",               titulo:"Coisinha do Pai",               interprete:"Beth Carvalho",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=8IA6cyc9q94",  cifra:"https://www.cifraclub.com.br/beth-carvalho/coisinha-do-pai/" },
-  { id:5,  art:"beth-carvalho",     mus:"vou-festejar",                  titulo:"Vou Festejar",                  interprete:"Beth Carvalho",          cantor:"Rosângela", tom:"",    yt:"https://www.youtube.com/watch?v=SfuV7MpvOSo",  cifra:"https://www.cifraclub.com.br/beth-carvalho/vou-festejar/" },
-  { id:6,  art:"adoniran-barbosa",  mus:"trem-das-onze",                 titulo:"Trem das Onze",                 interprete:"Adoniran Barbosa",       cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=RkkGVgOqPuM",  cifra:"https://www.cifraclub.com.br/adoniran-barbosa/trem-das-onze/" },
-  { id:7,  art:"cartola",           mus:"o-mundo-e-um-moinho",           titulo:"O Mundo É um Moinho",           interprete:"Cartola",                cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=wf0tnUFpjwM",  cifra:"https://www.cifraclub.com.br/cartola/o-mundo-e-um-moinho/" },
-  { id:8,  art:"clara-nunes",       mus:"canto-das-tres-racas",          titulo:"Canto das Três Raças",          interprete:"Clara Nunes",            cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=dcVKb2ht6BE",  cifra:"https://www.cifraclub.com.br/clara-nunes/canto-das-tres-racas/" },
-  { id:9,  art:"zeca-pagodinho",    mus:"samba-pras-mocas",              titulo:"Samba pras Moças",              interprete:"Zeca Pagodinho",         cantor:"Jones",     tom:"E",   yt:"https://www.youtube.com/watch?v=QGZNRUDSGRI",  cifra:"https://www.cifraclub.com.br/zeca-pagodinho/samba-pras-mocas/" },
-  { id:10, art:"ara-ketu",          mus:"mal-acostumada",                titulo:"Mal Acostumada",                interprete:"Ara Ketu",               cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=ZEdiAze7ljA",  cifra:"https://www.cifraclub.com.br/ara-ketu/mal-acostumada/" },
-  { id:11, art:"jones-do-samba",    mus:"so-pra-te-encontrar",           titulo:"Só pra Te Encontrar",           interprete:"Jones do Samba",         cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=CW_08sOdzHg",  cifra:"https://www.cifraclub.com.br/jones-do-samba/so-pra-te-encontrar/" },
-  { id:12, art:"claudia-leitte",    mus:"amor-perfeito",                 titulo:"Amor Perfeito (Ao Vivo)",       interprete:"Babado Novo",            cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=THwQSH0fbrk",  cifra:"https://www.cifraclub.com.br/claudia-leitte/amor-perfeito/" },
-  { id:13, art:"jones-do-samba",    mus:"o-amor-da-tua-voz",             titulo:"O Amor da Tua Voz",             interprete:"Jones do Samba",         cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=Foc2aOSky_4",  cifra:"https://www.cifraclub.com.br/jones-do-samba/o-amor-da-tua-voz/" },
-  { id:14, art:"cartola",           mus:"preciso-me-encontrar",          titulo:"Preciso Me Encontrar",          interprete:"Cartola",                cantor:"Jones",     tom:"Dm",  yt:"https://www.youtube.com/watch?v=56mu8KSUYqk",  cifra:"https://www.cifraclub.com.br/cartola/preciso-me-encontrar/" },
-  { id:15, art:"clementina-de-jesus",mus:"marinheiro-so",                titulo:"Marinheiro Só (1982)",          interprete:"Clementina de Jesus",    cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=RQMBOlzajEg",  cifra:"https://www.cifraclub.com.br/clementina-de-jesus/marinheiro-so/" },
-  { id:16, art:"marisa-monte",      mus:"de-mais-ninguem",               titulo:"De Mais Ninguém",               interprete:"Marisa Monte",           cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=TMdZqj-xkYY",  cifra:"https://www.cifraclub.com.br/marisa-monte/de-mais-ninguem/" },
-  { id:17, art:"marisa-monte",      mus:"rosa",                          titulo:"Rosa",                          interprete:"Marisa Monte",           cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=W7gOXWeiC7I",  cifra:"https://www.cifraclub.com.br/marisa-monte/rosa/" },
-  { id:18, art:"arlindo-cruz",      mus:"trilha-do-amor",                titulo:"Trilha do Amor (Ao Vivo)",      interprete:"Arlindo Cruz",           cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=zxAV70LKgVY",  cifra:"https://www.cifraclub.com.br/arlindo-cruz/trilha-do-amor/" },
-  { id:19, art:"beth-carvalho",     mus:"samba-de-arere",                titulo:"Samba de Arerê (Ao Vivo)",      interprete:"Beth Carvalho",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=yCQKD6_dK2s",  cifra:"https://www.cifraclub.com.br/beth-carvalho/samba-de-arere/" },
-  { id:20, art:"joao-nogueira",     mus:"o-poder-da-criacao",            titulo:"Poder da Criação",              interprete:"João Nogueira",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=tiAa8JsI37Y",  cifra:"https://www.cifraclub.com.br/joao-nogueira/o-poder-da-criacao/" },
-  { id:21, art:"jorge-aragao",      mus:"papel-de-pao",                  titulo:"Papel de Pão",                  interprete:"Jorge Aragão",           cantor:"Jones",     tom:"Cm",  yt:"https://www.youtube.com/watch?v=P3AMUR2dlwk",  cifra:"https://www.cifraclub.com.br/jorge-aragao/papel-de-pao/" },
-  { id:22, art:"jorge-aragao",      mus:"coisa-de-pele",                 titulo:"Coisa de Pele",                 interprete:"Jorge Aragão",           cantor:"Jones",     tom:"F",   yt:"https://www.youtube.com/watch?v=JRO_HbfaSOk",  cifra:"https://www.cifraclub.com.br/jorge-aragao/coisa-de-pele/" },
-  { id:23, art:"chico-buarque",     mus:"joao-e-maria",                  titulo:"João e Maria (Ao Vivo)",        interprete:"Chico Buarque",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=agH2bBnNUCs",  cifra:"https://www.cifraclub.com.br/chico-buarque/joao-e-maria/" },
-  { id:24, art:"jones-do-samba",    mus:"no-inverno-eu-quero-amor",      titulo:"No Inverno Eu Quero Amor",      interprete:"Jones do Samba",         cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=vGQou-bPslQ",  cifra:"https://www.cifraclub.com.br/jones-do-samba/no-inverno-eu-quero-amor/" },
-  { id:25, art:"paulinho-da-viola", mus:"pecado-capital",                titulo:"Pecado Capital",                interprete:"Paulinho da Viola",      cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=6aIzRH9ghMA",  cifra:"https://www.cifraclub.com.br/paulinho-da-viola/pecado-capital/" },
-  { id:26, art:"noite-ilustrada",   mus:"volta-por-cima",                titulo:"Volta por Cima (1962)",         interprete:"Beth Carvalho",          cantor:"Rosângela", tom:"",    yt:"https://www.youtube.com/watch?v=BI8dBBDL0CU",  cifra:"https://www.cifraclub.com.br/noite-ilustrada/volta-por-cima/" },
-  { id:27, art:"benito-di-paula",   mus:"do-jeito-que-a-vida-quer",      titulo:"Do Jeito Que a Vida Quer",      interprete:"Benito Di Paula",        cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=aJLEypMfk9A",  cifra:"https://www.cifraclub.com.br/benito-di-paula/do-jeito-que-a-vida-quer/" },
-  { id:28, art:"deborah-cecilia",   mus:"deixei-na-bahia",               titulo:"Deixei na Bahia",               interprete:"Déborah Cecília",        cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=CV1Pe1aLtsE",  cifra:"https://www.cifraclub.com.br/deborah-cecilia/deixei-na-bahia/" },
-  { id:29, art:"clara-nunes",       mus:"juizo-final",                   titulo:"Juízo Final",                   interprete:"Clara Nunes",            cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=q8cfnPc7Cx4",  cifra:"https://www.cifraclub.com.br/clara-nunes/juizo-final/" },
-  { id:30, art:"martinho-da-vila",  mus:"disritmia",                     titulo:"Disritmia",                     interprete:"Martinho da Vila",       cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=9y7P1af3NAM",  cifra:"https://www.cifraclub.com.br/martinho-da-vila/disritmia/" },
-  { id:31, art:"agepe",             mus:"deixa-eu-te-amar",              titulo:"Deixa Eu Te Amar",              interprete:"Agepê",                  cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=fNGkA-SbH_Y",  cifra:"https://www.cifraclub.com.br/agepe/deixa-eu-te-amar/" },
-  { id:32, art:"gonzaguinha",       mus:"o-que-e-o-que-e",               titulo:"O Que É, O Que É?",             interprete:"Gonzaguinha",            cantor:"Jones",     tom:"F",   yt:"https://www.youtube.com/watch?v=wZL7EnZtBss",  cifra:"https://www.cifraclub.com.br/gonzaguinha/o-que-o-que/" },
-  { id:33, art:"djavan",            mus:"flor-de-lis",                   titulo:"Flor de Lis (Ao Vivo)",         interprete:"Djavan",                 cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=peR8eOcGA3M",  cifra:"https://www.cifraclub.com.br/djavan/flor-de-lis/" },
-  { id:34, art:"djavan",            mus:"tanta-saudade",                 titulo:"Tanta Saudade",                 interprete:"Djavan",                 cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=YXDXzX7fQmU",  cifra:"https://www.cifraclub.com.br/djavan/tanta-saudade/" },
-  { id:35, art:"djavan",            mus:"fato-consumado",                titulo:"Fato Consumado",                interprete:"Djavan",                 cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=0FVEals3f2w",  cifra:"https://www.cifraclub.com.br/djavan/fato-consumado/" },
-  { id:36, art:"so-pra-contrariar", mus:"essa-tal-liberdade",            titulo:"Essa Tal Liberdade",            interprete:"Só Pra Contrariar",      cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=dnJ4Q_-3wms",  cifra:"https://www.cifraclub.com.br/so-pra-contrariar/essa-tal-liberdade/" },
-  { id:37, art:"so-pra-contrariar", mus:"mineirinho",                    titulo:"Mineirinho (Ao Vivo)",          interprete:"Só Pra Contrariar",      cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=NsPZN35M8SQ",  cifra:"https://www.cifraclub.com.br/so-pra-contrariar/mineirinho/" },
-  { id:38, art:"seu-jorge",         mus:"burguesinha",                   titulo:"Burguesinha",                   interprete:"Seu Jorge",              cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=REUXbGaEl94",  cifra:"https://www.cifraclub.com.br/seu-jorge/burguesinha/" },
-  { id:39, art:"so-pra-contrariar", mus:"que-se-chama-amor",             titulo:"Que Se Chama Amor (Ao Vivo)",   interprete:"Só Pra Contrariar",      cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=f9girRFeLUg",  cifra:"https://www.cifraclub.com.br/so-pra-contrariar/que-se-chama-amor/" },
-  { id:40, art:"benito-di-paula",   mus:"amigo-do-sol-amigo-da-lua",     titulo:"Amigo do Sol, Amigo da Lua",    interprete:"Benito Di Paula",        cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=UnXDeGBosf4",  cifra:"https://www.cifraclub.com.br/benito-di-paula/amigo-do-sol-amigo-da-lua/" },
-  { id:41, art:"tim-maia",          mus:"gostava-tanto-de-voce",         titulo:"Gostava Tanto de Você",         interprete:"Tim Maia",               cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=TZQsoLACMW0",  cifra:"https://www.cifraclub.com.br/tim-maia/gostava-tanto-de-voce/" },
-  { id:42, art:"lo-borges",         mus:"paisagem-da-janela",            titulo:"Paisagem da Janela",            interprete:"Lô Borges",              cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=X-CmR4SHDK0",  cifra:"https://www.cifraclub.com.br/lo-borges/paisagem-da-janela/" },
-  { id:43, art:"tunai",             mus:"frisson",                       titulo:"Frisson",                       interprete:"Tunai",                  cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=DS5ZYNjL3XI",  cifra:"https://www.cifraclub.com.br/tunai/frisson/" },
-  { id:44, art:"jorge-ben-jor",     mus:"mas-que-nada",                  titulo:"Mas Que Nada",                  interprete:"Jorge Ben Jor",          cantor:"Anderson",  tom:"Gm",  yt:"https://www.youtube.com/watch?v=oCM_VWzSiMo",  cifra:"https://www.cifraclub.com.br/jorge-ben-jor/mais-que-nada/" },
-  { id:45, art:"elis-regina",       mus:"como-nossos-pais",              titulo:"Como Nossos Pais",              interprete:"Elis Regina",            cantor:"Rosângela", tom:"D",   yt:"https://www.youtube.com/watch?v=fS_5Z_6V2sE",  cifra:"https://www.cifraclub.com.br/elis-regina/como-nossos-pais/" },
-  { id:46, art:"elis-regina",       mus:"o-bebado-e-a-equilibrista",     titulo:"O Bêbado e a Equilibrista",     interprete:"Elis Regina",            cantor:"Rosângela", tom:"A",   yt:"https://www.youtube.com/watch?v=S2u7Vp3Rj7U",  cifra:"https://www.cifraclub.com.br/elis-regina/o-bebado-e-a-equilibrista/" },
+  { id:1,  titulo:"Eu Vou para a Roda de Samba",   interprete:"Jones do Samba",       cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=CTjVLwN7FkQ" },
+  { id:2,  titulo:"Não Deixe o Samba Morrer",      interprete:"Alcione",               cantor:"Jones",     tom:"D#m", yt:"https://www.youtube.com/watch?v=GtEOP1xB250" },
+  { id:3,  titulo:"Retalhos de Cetim",             interprete:"Benito Di Paula",        cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=Z1DVYcUK3PY" },
+  { id:4,  titulo:"Coisinha do Pai",               interprete:"Beth Carvalho",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=8IA6cyc9q94" },
+  { id:5,  titulo:"Vou Festejar",                  interprete:"Beth Carvalho",          cantor:"Rosângela", tom:"",    yt:"https://www.youtube.com/watch?v=SfuV7MpvOSo" },
+  { id:6,  titulo:"Trem das Onze",                 interprete:"Adoniran Barbosa",       cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=RkkGVgOqPuM" },
+  { id:7,  titulo:"O Mundo É um Moinho",           interprete:"Cartola",                cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=wf0tnUFpjwM" },
+  { id:8,  titulo:"Canto das Três Raças",          interprete:"Clara Nunes",            cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=dcVKb2ht6BE" },
+  { id:9,  titulo:"Samba pras Moças",              interprete:"Zeca Pagodinho",         cantor:"Jones",     tom:"E",   yt:"https://www.youtube.com/watch?v=QGZNRUDSGRI" },
+  { id:10,  titulo:"Mal Acostumada",                interprete:"Ara Ketu",               cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=ZEdiAze7ljA" },
+  { id:11,  titulo:"Só pra Te Encontrar",           interprete:"Jones do Samba",         cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=CW_08sOdzHg" },
+  { id:12,  titulo:"Amor Perfeito (Ao Vivo)",       interprete:"Babado Novo",            cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=THwQSH0fbrk" },
+  { id:13,  titulo:"O Amor da Tua Voz",             interprete:"Jones do Samba",         cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=Foc2aOSky_4" },
+  { id:14,  titulo:"Preciso Me Encontrar",          interprete:"Cartola",                cantor:"Jones",     tom:"Dm",  yt:"https://www.youtube.com/watch?v=56mu8KSUYqk" },
+  { id:15,  titulo:"Marinheiro Só (1982)",          interprete:"Clementina de Jesus",    cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=RQMBOlzajEg" },
+  { id:16,  titulo:"De Mais Ninguém",               interprete:"Marisa Monte",           cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=TMdZqj-xkYY" },
+  { id:17,  titulo:"Rosa",                          interprete:"Marisa Monte",           cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=W7gOXWeiC7I" },
+  { id:18,  titulo:"Trilha do Amor (Ao Vivo)",      interprete:"Arlindo Cruz",           cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=zxAV70LKgVY" },
+  { id:19,  titulo:"Samba de Arerê (Ao Vivo)",      interprete:"Beth Carvalho",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=yCQKD6_dK2s" },
+  { id:20,  titulo:"Poder da Criação",              interprete:"João Nogueira",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=tiAa8JsI37Y" },
+  { id:21,  titulo:"Papel de Pão",                  interprete:"Jorge Aragão",           cantor:"Jones",     tom:"Cm",  yt:"https://www.youtube.com/watch?v=P3AMUR2dlwk" },
+  { id:22,  titulo:"Coisa de Pele",                 interprete:"Jorge Aragão",           cantor:"Jones",     tom:"F",   yt:"https://www.youtube.com/watch?v=JRO_HbfaSOk" },
+  { id:23,  titulo:"João e Maria (Ao Vivo)",        interprete:"Chico Buarque",          cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=agH2bBnNUCs" },
+  { id:24,  titulo:"No Inverno Eu Quero Amor",      interprete:"Jones do Samba",         cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=vGQou-bPslQ" },
+  { id:25,  titulo:"Pecado Capital",                interprete:"Paulinho da Viola",      cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=6aIzRH9ghMA" },
+  { id:26,  titulo:"Volta por Cima (1962)",         interprete:"Beth Carvalho",          cantor:"Rosângela", tom:"",    yt:"https://www.youtube.com/watch?v=BI8dBBDL0CU" },
+  { id:27,  titulo:"Do Jeito Que a Vida Quer",      interprete:"Benito Di Paula",        cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=aJLEypMfk9A" },
+  { id:28,  titulo:"Deixei na Bahia",               interprete:"Déborah Cecília",        cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=CV1Pe1aLtsE" },
+  { id:29,  titulo:"Juízo Final",                   interprete:"Clara Nunes",            cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=q8cfnPc7Cx4" },
+  { id:30,  titulo:"Disritmia",                     interprete:"Martinho da Vila",       cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=9y7P1af3NAM" },
+  { id:31,  titulo:"Deixa Eu Te Amar",              interprete:"Agepê",                  cantor:"Jones",     tom:"",    yt:"https://www.youtube.com/watch?v=fNGkA-SbH_Y" },
+  { id:32,  titulo:"O Que É, O Que É?",             interprete:"Gonzaguinha",            cantor:"Jones",     tom:"F",   yt:"https://www.youtube.com/watch?v=wZL7EnZtBss" },
+  { id:33,  titulo:"Flor de Lis (Ao Vivo)",         interprete:"Djavan",                 cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=peR8eOcGA3M" },
+  { id:34,  titulo:"Tanta Saudade",                 interprete:"Djavan",                 cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=YXDXzX7fQmU" },
+  { id:35,  titulo:"Fato Consumado",                interprete:"Djavan",                 cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=0FVEals3f2w" },
+  { id:36,  titulo:"Essa Tal Liberdade",            interprete:"Só Pra Contrariar",      cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=dnJ4Q_-3wms" },
+  { id:37,  titulo:"Mineirinho (Ao Vivo)",          interprete:"Só Pra Contrariar",      cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=NsPZN35M8SQ" },
+  { id:38,  titulo:"Burguesinha",                   interprete:"Seu Jorge",              cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=REUXbGaEl94" },
+  { id:39,  titulo:"Que Se Chama Amor (Ao Vivo)",   interprete:"Só Pra Contrariar",      cantor:"Val",       tom:"",    yt:"https://www.youtube.com/watch?v=f9girRFeLUg" },
+  { id:40,  titulo:"Amigo do Sol, Amigo da Lua",    interprete:"Benito Di Paula",        cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=UnXDeGBosf4" },
+  { id:41,  titulo:"Gostava Tanto de Você",         interprete:"Tim Maia",               cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=TZQsoLACMW0" },
+  { id:42,  titulo:"Paisagem da Janela",            interprete:"Lô Borges",              cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=X-CmR4SHDK0" },
+  { id:43,  titulo:"Frisson",                       interprete:"Tunai",                  cantor:"Anderson",  tom:"",    yt:"https://www.youtube.com/watch?v=DS5ZYNjL3XI" },
+  { id:44,  titulo:"Mas Que Nada",                  interprete:"Jorge Ben Jor",          cantor:"Anderson",  tom:"Gm",  yt:"https://www.youtube.com/watch?v=oCM_VWzSiMo" },
+  { id:45,  titulo:"Como Nossos Pais",              interprete:"Elis Regina",            cantor:"Rosângela", tom:"D",   yt:"https://www.youtube.com/watch?v=fS_5Z_6V2sE" },
+  { id:46,  titulo:"O Bêbado e a Equilibrista",     interprete:"Elis Regina",            cantor:"Rosângela", tom:"A",   yt:"https://www.youtube.com/watch?v=S2u7Vp3Rj7U" },
 ];
 
 const SECTIONS = [
@@ -576,12 +576,9 @@ const SECTIONS = [
   { label:"Rosângela",      ids: [5,26,45,46] },
 ];
 
-/* Vagalume API key pública (free tier, sem cadastro) */
-const API_KEY = "00000000000000000000000000000000";
-const API_BASE = "https://api.vagalume.com.br/search.php";
+/* letras2.js é carregado como <script> no <head> */
 
 let currentSong = null;
-let lyricsCache = {};
 
 /* ── Renderizar índice ── */
 function buildIndex() {
@@ -650,9 +647,7 @@ function openSong(id) {
 
   /* links */
   document.getElementById("song-links").innerHTML = `
-    <a href="${song.yt}"    class="yt"      target="_blank">▶ YouTube</a>
-    <a href="${song.cifra}" class="cifra"   target="_blank">🎸 Cifra</a>
-    <a href="https://www.vagalume.com.br/${song.art}/${song.mus}.html" class="vagalume" target="_blank">♪ Vagalume</a>`;
+    <a href="${song.yt}"    class="yt"    target="_blank">▶ YouTube</a>`;
 
   /* prev / next */
   document.getElementById("btn-prev").disabled = (song.id === 1);
@@ -669,53 +664,34 @@ function navSong(dir) {
   if (next) openSong(next.id);
 }
 
-/* ── Carregar letra via Vagalume API ── */
-async function loadLyrics(song) {
+/* ── Buscar letra no letras2.js por id ── */
+function loadLyrics(song) {
   const area = document.getElementById("lyrics-area");
 
-  /* cache */
-  if (lyricsCache[song.id]) {
-    renderLyrics(area, lyricsCache[song.id], song);
-    return;
-  }
+  const entrada = (typeof letras !== "undefined") ? letras[song.id] : null;
 
-  area.innerHTML = `<div class="state-loading"><div class="spinner"></div><p>Carregando letra…</p></div>`;
-
-  const url = `${API_BASE}?art=${encodeURIComponent(song.art)}&mus=${encodeURIComponent(song.mus)}&apikey=${API_KEY}`;
-
-  try {
-    const res  = await fetch(url);
-    const data = await res.json();
-
-    if (data.type === "notfound" || !data.mus || !data.mus[0] || !data.mus[0].text) {
-      throw new Error("not_found");
-    }
-
-    const text = data.mus[0].text;
-    lyricsCache[song.id] = text;
-    renderLyrics(area, text, song);
-
-  } catch (err) {
-    const vagLink = `https://www.vagalume.com.br/${song.art}/${song.mus}.html`;
+  if (entrada && entrada.letra && entrada.letra.trim() !== "") {
+    renderLyrics(area, entrada.letra, song);
+  } else {
     area.innerHTML = `
       <div class="state-error">
         <div class="err-icon">🎵</div>
-        <p>Não foi possível carregar a letra automaticamente.<br>Toque para abrir no Vagalume:</p>
-        <a href="${vagLink}" target="_blank">Ver letra no Vagalume →</a>
+        <p>Letra ainda não cadastrada.<br>
+           Adicione o texto no <strong>letras2.js</strong>
+           na entrada de id <strong>${song.id}</strong>.</p>
       </div>`;
   }
 }
 
 function renderLyrics(area, text, song) {
-  /* Vagalume retorna \n simples entre versos e \n\n entre estrofes */
+  /* Texto retorna \n entre versos e \n\n entre estrofes */
   const escaped = text
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;");
 
   area.innerHTML = `
-    <div class="lyrics-text">${escaped}</div>
-    <div class="lyrics-credit">Letra fornecida por Vagalume.com.br</div>`;
+    <div class="lyrics-text">${escaped}</div>`;
 }
 
 /* ── Init ── */
