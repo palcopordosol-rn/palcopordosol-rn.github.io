@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palco Pôr do Sol - Repertório</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header { background-color: #034626; color: white; padding: 20px; position: relative; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.9rem; }
+        .btn-voltar {
+            background-color: rgba(255, 255, 255, 0.15); color: white; padding: 6px 12px;
+            border-radius: 20px; text-decoration: none; font-weight: 500; cursor: pointer; border: none; font-size: 0.85rem;
+        }
+        .contador { opacity: 0.8; font-weight: bold; letter-spacing: 1px; }
+        .titulo-musica { font-size: 1.6rem; font-weight: bold; margin-bottom: 8px; }
+        .artista-container { display: flex; align-items: center; gap: 10px; }
+        .nome-artista { font-size: 1rem; opacity: 0.9; }
+        .badge-vocal {
+            background-color: rgba(255, 255, 255, 0.2); padding: 4px 10px;
+            border-radius: 12px; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;
+        }
+        .tela { display: none; flex: 1; flex-direction: column; }
+        .tela.ativa { display: flex; }
+        .busca-container { padding: 15px; background-color: #f4f6f5; }
+        .input-busca { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+        .lista-repertorio { list-style: none; flex: 1; overflow-y: auto; }
+        .item-musica { padding: 15px 20px; border-bottom: 1px solid #eee; cursor: pointer; display: flex; flex-direction: column; gap: 4px; }
+        .item-musica:active { background-color: #f9f9f9; }
+        .item-titulo { font-weight: bold; color: #1a4223; font-size: 1.05rem; }
+        .item-artista { font-size: 0.9rem; color: #666; }
+        .conteudo-central { flex: 1; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .letra-texto { white-space: pre-line; text-align: center; line-height: 1.8; font-size: 1.15rem; color: #2c3e50; width: 100%; max-width: 550px; }
+        .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; margin-bottom: 15px; }
+        .btn-acao { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem; border: none; cursor: pointer; }
+        .btn-youtube { background-color: #c00000; }
+        .btn-cifra { background-color: #1a4223; }
+        .botoes-navegacao { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px 25px 15px; }
+        .btn-nav { background-color: #f1f3f2; color: #1a4223; padding: 14px; border-radius: 8px; border: none; font-weight: bold; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+    <div id="tela-lista" class="tela ativa">
+        <div class="header">
+            <div class="titulo-musica">Palco Pôr do Sol</div>
+            <div class="nome-artista" id="txt-total-musicas">Carregando repertório...</div>
+        </div>
+        <div class="busca-container">
+            <input type="text" id="input-filtro" class="input-busca" placeholder="🔍 Buscar música ou artista...">
+        </div>
+        <ul class="lista-repertorio" id="lista-musicas"></ul>
+    </div>
+
+    <div id="tela-letra" class="tela">
+        <div class="header">
+            <div class="top-bar">
+                <button class="btn-voltar" id="btn-voltar-lista">← Voltar</button>
+                <div class="contador" id="txt-contador">0 / 0</div>
+            </div>
+            <div class="titulo-musica" id="txt-titulo">Título da Música</div>
+            <div class="artista-container">
+                <div class="nome-artista" id="txt-artista">Nome do Artista</div>
+                <div class="badge-vocal"><i class="fa-solid fa-microphone-lines"></i> Jones</div>
+            </div>
+        </div>
+        <div class="conteudo-central">
+            <div class="letra-texto" id="bloco-texto-letra"></div>
+        </div>
+        <div class="botoes-acao">
+            <a href="#" id="link-youtube" target="_blank" class="btn-acao btn-youtube"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            <a href="#" id="link-cifra" target="_blank" class="btn-acao btn-cifra"><i class="fa-solid fa-guitar"></i> Cifra</a>
+        </div>
+        <div class="botoes-navegacao">
+            <button class="btn-nav" id="btn-anterior">◀ Anterior</button>
+            <button class="btn-nav" id="btn-proxima">Próxima ▶</button>
+        </div>
+    </div>
+<script src="letras.js"></script>
+    <script>
+        let indiceAtual = 0;
+        const telaLista = document.getElementById('tela-lista');
+        const telaLetra = document.getElementById('tela-letra');
+        const inputFiltro = document.getElementById('input-filtro');
+        const listaMusicasUl = document.getElementById('lista-musicas');
+
+        function carregarMenuRepertorio(filtro = '') {
+            listaMusicasUl.innerHTML = '';
+            if (typeof repertorio === 'undefined' || !Array.isArray(repertorio)) {
+                document.getElementById('txt-total-musicas').innerText = "Erro: arquivo letras.js não encontrado.";
+                return;
+            }
+            document.getElementById('txt-total-musicas').innerText = `${repertorio.length} músicas no repertório`;
+            repertorio.forEach((musica, indice) => {
+                const termoPesquisa = `${musica.titulo} ${musica.artista}`.toLowerCase();
+                if (filtro && !termoPesquisa.includes(filtro.toLowerCase())) return;
+                const li = document.createElement('li');
+                li.className = 'item-musica';
+                li.innerHTML = `<span class="item-titulo">${musica.titulo}</span><br><span class="item-artista">${musica.artista}</span>`;
+                li.addEventListener('click', () => abrirVisualizadorLetra(indice));
+                listaMusicasUl.appendChild(li);
+            });
+        }
+
+        function abrirVisualizadorLetra(index) {
+            indiceAtual = index;
+            const musica = repertorio[indiceAtual];
+            document.getElementById('txt-contador').innerText = `${indiceAtual + 1} / ${repertorio.length}`;
+            document.getElementById('txt-titulo').innerText = musica.titulo;
+            document.getElementById('txt-artista').innerText = musica.artista;
+            document.getElementById('bloco-texto-letra').innerText = musica.letra;
+            document.getElementById('link-youtube').href = musica.youtube || '#';
+            document.getElementById('link-cifra').href = musica.cifra || '#';
+            document.getElementById('btn-anterior').disabled = (indiceAtual === 0);
+            document.getElementById('btn-proxima').disabled = (indiceAtual === repertorio.length - 1);
+            telaLista.classList.remove('ativa');
+            telaLetra.classList.add('ativa');
+            window.scrollTo(0, 0);
+        }
+
+        inputFiltro.addEventListener('input', (e) => carregarMenuRepertorio(e.target.value));
+        document.getElementById('btn-voltar-lista').addEventListener('click', () => {
+            telaLetra.classList.remove('ativa');
+            telaLista.classList.add('ativa');
+        });
+        document.getElementById('btn-anterior').addEventListener('click', () => {
+            if (indiceAtual > 0) abrirVisualizadorLetra(indiceAtual - 1);
+        });
+        document.getElementById('btn-proxima').addEventListener('click', () => {
+            if (indiceAtual < repertorio.length - 1) abrirVisualizadorLetra(indiceAtual + 1);
+        });
+
+        window.onload = () => carregarMenuRepertorio();
+    </script>
+</body>
+</html>
