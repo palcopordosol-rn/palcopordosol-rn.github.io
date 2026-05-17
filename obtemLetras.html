@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador Automático de Letras via LRCLIB</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; line-height: 1.6; }
+        button { background: #034626; color: white; border: none; padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
+        button:hover { background: #022c18; }
+        #log { margin-top: 20px; background: #f4f4f4; padding: 15px; border-radius: 5px; max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 13px; }
+        .sucesso { color: green; }
+        .erro { color: red; }
+    </style>
+</head>
+<body>
+
+    <h2>Gerador Automático: letras.js (Via LRCLIB Search)</h2>
+    <p>Este script utiliza a busca inteligente (Fuzzy Search) do LRCLIB para mapear o seu repertório e criar o arquivo local estável.</p>
+    
+    <button id="btnIniciar">Iniciar Busca com LRCLIB e Gerar Arquivo</button>
+
+    <div id="log">Aguardando início...</div>
+
+    <script>
+        // =======================================================
+        // LISTA DE MÚSICAS DO SEU REPERTÓRIO
+        // =======================================================
+        const minhasMusicas = [
+            { artista: "Benito Di Paula", titulo: "Retalhos de Cetim", youtube: "#", cifra: "#" },
+            { artista: "Alcione", titulo: "Não Deixe o Samba Morrer", youtube: "#", cifra: "#" },
+            { artista: "Fundo de Quintal", titulo: "O Show Tem Que Continuar", youtube: "#", cifra: "#" },
+            { artista: "Zeca Pagodinho", titulo: "Verdade", youtube: "#", cifra: "#" }
+            // Adicione aqui o restante das suas 46 músicas
+        ];
+
+        document.getElementById('btnIniciar').addEventListener('click', async () => {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML = "Conectando ao servidor do LRCLIB...<br>";
+            
+            let repertorioFinal = [];
+
+            for (let i = 0; i < minhasMusicas.length; i++) {
+                const item = minhasMusicas[i];
+                logDiv.innerHTML += `Buscando (${i + 1}/${minhasMusicas.length}): ${item.titulo}... `;
+                
+                // Monta o termo unificado para a busca inteligente (Fuzzy Search)
+                const termoBusca = `${item.artista} ${item.titulo}`;
+                const url = `https://lrclib.net/api/search?q=${encodeURIComponent(termoBusca)}`;
+                
+                let letraEncontrada = "Letra não encontrada no acervo automático.";
+                
+                try {
+                    // O fetch puro funciona sem problemas de CORS aqui
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const resultados = await response.json();
+                        
+                        // Verifica se a busca retornou resultados válidos e se o primeiro tem letra
+                        if (resultados && resultados.length > 0 && resultados[0].plainLyrics) {
+                            letraEncontrada = resultados[0].plainLyrics;
+                            logDiv.innerHTML += `<span class="sucesso">OK!</span><br>`;
+                        } else {
+                            logDiv.innerHTML += `<span class="erro">Sem letra disponível</span><br>`;
+                        }
+                    } else {
+                        logDiv.innerHTML += `<span class="erro">Erro ${response.status}</span><br>`;
+                    }
+                } catch (err) {
+                    logDiv.innerHTML += `<span class="erro">Falha de Conexão</span><br>`;
+                }
+
+                // Salva o objeto estruturado com a letra limpa
+                repertorioFinal.push({
+                    artista: item.artista,
+                    titulo: item.titulo,
+                    youtube: item.youtube,
+                    cifra: item.cifra,
+                    letra: letraEncontrada
+                });
+
+                // Pausa técnica rápida de 300ms para respeitar o limite de requisições do servidor
+                await new Promise(r => setTimeout(r, 300));
+            }
+
+            logDiv.innerHTML += "<br><strong>Varredura concluída com sucesso!</strong>";
+
+            // Transforma o array final na estrutura do arquivo JavaScript
+            const conteudoArquivo = `// Arquivo de letras offline gerado via LRCLIB\nconst repertorio = ${JSON.stringify(repertorioFinal, null, 4)};`;
+
+            // Prepara e força o download do arquivo letras.js no navegador
+            const blob = new Blob([conteudoArquivo], { type: 'text/javascript' });
+            const urlDownload = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = urlDownload;
+            a.download = 'letras.js';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            logDiv.innerHTML += "<br><span class='sucesso'>Feito! O arquivo 'letras.js' foi gerado e baixado automaticamente.</span>";
+        });
+    </script>
+</body>
+</html>
