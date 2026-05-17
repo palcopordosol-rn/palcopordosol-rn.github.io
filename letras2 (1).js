@@ -2,7 +2,90 @@
 // Arquivo gerado automaticamente via LRCLIB Fuzzy Search
 
 const letras = {
-  1: { letra: "" }, // Eu Vou para a Roda de Samba — Jones do Samba
+  1: { letra: 1: { letra: `Pandeiro e um coração
+Batendo com emoção
+Eu vou para a roda de samba
+Escutar o meu bamba
+E sapatear
+Pequena que pra mim acena
+Da fala serena
+Quero ser teu par
+(Pequena que pra mim acena
+Da fala serena
+Quero ser teu par)
+
+Eu cumpro os meus compromissos
+E acordo cedo
+Para trabalhar
+Mas quando eu estou mais folgado
+Eu só penso num samba
+E quero lhe abraçar
+(Mas quando eu estou mais folgado
+Eu só penso num samba
+E quero lhe abraçar)
+
+Vamos junto pro gingado
+Festejar é merecido
+Não sou um privilegiado
+Sigo minha luta
+Mesmo desvalido
+Um pandeiro e um coração
+Batendo com emoção
+Vem comigo
+Oh pequena
+Que estou coberto
+De boa intenção
+(Vem comigo
+Oh pequena
+Que estou coberto
+De boa intenção)
+
+Eu vou para a roda de samba
+Escutar o meu bamba
+E sapatear
+Pequena que pra mim acena
+Da fala serena
+Quero ser teu par
+(Pequena que pra mim acena
+Da fala serena
+Quero ser teu par)
+
+Eu cumpro os meus compromissos
+E acordo cedo
+Para trabalhar
+Mas quando eu estou mais folgado
+Eu só penso num samba
+E quero lhe abraçar
+(Mas quando eu estou mais folgado
+Eu só penso num samba
+E quero lhe abraçar)
+
+Vamos junto pro gingado
+Festejar é merecido
+Não sou um privilegiado
+Sigo minha luta
+Mesmo desvalido
+Um pandeiro e um coração
+Batendo com emoção
+Vem comigo
+Oh pequena
+Que estou coberto
+De boa intenção
+(Vem comigo
+Oh pequena
+Que estou coberto
+De boa intenção)
+
+Eu vou
+Para a roda de samba
+Eu vou
+Nada melhor que um samba
+E um grande amor
+(Eu vou
+Para a roda de samba
+Eu vou
+Nada melhor que um samba)
+E um grande amor` },  // Eu Vou para a Roda de Samba — Jones do Samba
   2: { letra: "Não deixe o samba morrer\nNão deixe o samba acabar\nO morro foi feito de samba\nDe samba para gente sambar\n\nQuando eu não puder pisar mais na avenida\nQuando as minhas pernas não puderem aguentar\nLevar meu corpo junto com meu samba\nO meu anel de bamba\nEntrego a quem mereça usar\n\nQuando eu não puder pisar mais na avenida\nQuando as minhas pernas não puderem aguentar\nLevar meu corpo junto com meu samba\nO meu anel de bamba\nEntrego a quem mereça usar\n\nEu vou ficar\nNo meio do povo, espiando\nMinha escola perdendo ou ganhando\nMais um carnaval\n\nAntes de me despedir\nDeixo ao sambista mais novo\nO meu pedido final\nAntes de me despedir\nDeixo ao sambista mais novo\nO meu pedido final\n\nNão deixe o samba morrer\nNão deixe o samba acabar\nO morro foi feito de samba\nDe samba para gente sambar\n\nNão deixe o samba morrer\nNão deixe o samba acabar\nO morro foi feito de samba\nDe samba para gente sambar\n\nQuando eu não puder pisar mais na avenida\nQuando as minhas pernas não puderem aguentar\nLevar meu corpo junto com meu samba\nO meu anel de bamba\nEntrego a quem mereça usar\n\nQuando eu não puder pisar mais na avenida\nQuando as minhas pernas não puderem aguentar\nLevar meu corpo junto com meu samba\nO meu anel de bamba\nEntrego a quem mereça usar\n\nEu vou ficar\nNo meio do povo espiando\nMinha escola perdendo ou ganhando\nMais um carnaval\n\nAntes de me despedir\nDeixo ao sambista mais novo\nO meu pedido final\nAntes de me despedir\nDeixo ao sambista mais novo\nO meu pedido final\n\nNão deixe o samba morrer\nNão deixe o samba acabar\nO morro foi feito de samba\nDe samba para gente sambar\n\nNão deixe o samba morrer\nNão deixe o samba acabar\nO morro foi feito de samba\nDe samba para gente sambar\n\nNão deixe o samba morrer..." }, // Não Deixe o Samba Morrer — Alcione
   3: { letra: "Ensaiei meu samba o ano inteiro\nComprei surdo e tamborim\nGastei tudo em fantasia\nEra só o que eu queria\nE ela jurou desfilar pra mim\n\nMinha escola estava tão bonita\nEra tudo o que eu queria ver\nEm retalhos de cetim\nEu dormi o ano inteiro\nE ela jurou desfilar pra mim\n\nMas chegou o carnaval\nE ela não desfilou\nEu chorei na avenida, eu chorei\nNão pensei que mentia a cabrocha\nQue eu tanto amei\n\nMinha escola estava tão bonita\nEra tudo o que eu queria ver\nEm retalhos de cetim\nEu dormi o ano inteiro\nE ela jurou desfilar pra mim\n\nMas chegou o carnaval\nE ela não desfilou\nEu chorei na avenida, eu chorei\nNão pensei que mentia a cabrocha\nQue eu tanto amei\n\nMas chegou o Carnaval\nE ela não desfilou\nEu chorei na avenida, eu chorei\nNão pensei que mentia a cabrocha\nQue eu tanto amei\n\nMas chegou o carnaval\nE ela não desfilou\nEu chorei na avenida, eu chorei" }, // Retalhos de Cetim — Benito Di Paula
   4: { letra: "O coisinha do pai, é\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nVocê vale ouro todo o meu tesouro\nTão formosa da cabeça aos pés\nVou lhe amando lhe adorando\nDigo mais uma vez\nAgradeço a Deus por que lhe fez\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\n(Eu disse coisinha) o coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nCharmosa ão dengosa\nQue só me deixa prosa\nTesouro vale ouro\nAgradeço a Deus por que lhe fez\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\n(Eu disse coisinha) o coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nVocê vale ouro todo o meu tesouro\nTão formosa da cabeça aos pés\nVou lhe amando lhe adorando\nDigo mais uma vez\nAgradeço a Deus por que lhe fez\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\n(Eu disse coisinha) o coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai (charmosa)\nCharmosa tão dengosa\nQue só me deixa prosa\nTesouro vale ouro\nAgradeço a Deus por que lhe fez\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\n(Eu disse coisinha) o coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\n(Eu disse coisinha) o coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\n(Eu disse coisinha) o coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai\nO coisinha tão bonitinha do pai" }, // Coisinha do Pai — Beth Carvalho
