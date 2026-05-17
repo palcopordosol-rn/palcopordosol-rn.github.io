@@ -439,6 +439,44 @@
     }
     .song-nav-bottom button:hover { background:#e4f2eb; }
     .song-nav-bottom button:disabled { opacity:.35; cursor:default; }
+
+    /* ── Controle de fonte ── */
+    .font-ctrl {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: #f8fdf9;
+      border-bottom: 1px solid #e8f0eb;
+      flex-shrink: 0;
+    }
+    .font-ctrl span {
+      font-size: 11px;
+      color: #888;
+      font-weight: 600;
+      letter-spacing: 1px;
+      min-width: 36px;
+      text-align: center;
+    }
+    .font-ctrl button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--verde);
+      background: white;
+      color: var(--verde);
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: .15s;
+    }
+    .font-ctrl button:hover  { background: var(--verde); color: white; }
+    .font-ctrl button:active { transform: scale(.92); }
   </style>
 </head>
 <body>
@@ -499,6 +537,11 @@
       <div class="song-meta" id="song-meta"></div>
     </div>
 
+    <div class="font-ctrl">
+      <button onclick="changeFont(-1)" title="Diminuir fonte">−</button>
+      <span id="font-size-label">15px</span>
+      <button onclick="changeFont(+1)" title="Aumentar fonte">+</button>
+    </div>
     <div class="lyrics-area" id="lyrics-area">
       <div class="state-loading">
         <div class="spinner"></div>
@@ -692,6 +735,24 @@ function renderLyrics(area, text, song) {
 
   area.innerHTML = `
     <div class="lyrics-text">${escaped}</div>`;
+  applyFont();
+}
+
+
+/* ── Controle de tamanho de fonte ── */
+let fontSize = parseInt(localStorage.getItem('fontSize') || '15');
+
+function applyFont() {
+  document.querySelectorAll('.lyrics-text').forEach(el => {
+    el.style.fontSize = fontSize + 'px';
+  });
+  document.getElementById('font-size-label').textContent = fontSize + 'px';
+}
+
+function changeFont(delta) {
+  fontSize = Math.min(28, Math.max(11, fontSize + delta));
+  localStorage.setItem('fontSize', fontSize);
+  applyFont();
 }
 
 /* ── Init ── */
