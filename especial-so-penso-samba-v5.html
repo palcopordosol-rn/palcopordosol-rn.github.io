@@ -273,12 +273,12 @@
     /* ══════════════════════════════════
        PÁGINA DA MÚSICA
     ══════════════════════════════════ */
-    #view-song { display:none; flex-direction:column; }
+    #view-song { display:none; flex-direction:column; height:100dvh; height:100vh; overflow:hidden; }
     #view-song.active { display:flex; }
 
     .song-header {
       background: linear-gradient(135deg, var(--verde), #02492b);
-      padding: 22px 18px 20px;
+      padding: 16px 18px 14px;
       color: white;
       position: relative;
       overflow: hidden;
@@ -354,8 +354,10 @@
     .lyrics-area {
       flex: 1;
       overflow-y: auto;
+      overflow-x: hidden;
       padding: 22px 18px;
       -webkit-overflow-scrolling: touch;
+      min-height: 0; /* essencial para flex + overflow funcionar */
     }
 
     /* Estados */
@@ -414,7 +416,7 @@
     .song-links {
       display: flex;
       gap: 8px;
-      padding: 14px 18px 22px;
+      padding: 8px 18px;
       flex-shrink: 0;
       border-top: 1px solid #eee;
     }
@@ -435,7 +437,7 @@
     .song-nav-bottom {
       display: flex;
       gap: 8px;
-      padding: 0 18px 18px;
+      padding: 4px 18px 12px;
       flex-shrink: 0;
     }
     .song-nav-bottom button {
@@ -459,7 +461,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 10px 18px;
+      padding: 8px 18px;
       background: #f8fdf9;
       border-bottom: 1px solid #e8f0eb;
       flex-shrink: 0;
@@ -473,30 +475,36 @@
       text-align: center;
     }
     .font-ctrl button {
-      width: 72px;
-      height: 44px;
-      border-radius: 12px;
+      width: 80px;
+      height: 40px;
+      border-radius: 10px;
       border: 2px solid var(--verde);
       background: white;
       color: var(--verde);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      line-height: 1.2;
+      gap: 5px;
+      line-height: 1;
       transition: .15s;
     }
     .font-ctrl button small {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 400;
-      opacity: .75;
-      letter-spacing: .5px;
+      opacity: .8;
     }
     .font-ctrl button:hover  { background: var(--verde); color: white; }
     .font-ctrl button:active { transform: scale(.92); }
+    @media (max-height: 500px) {
+      .font-ctrl { padding: 5px 18px; }
+      .font-ctrl button { height: 32px; font-size: 12px; }
+      .song-nav-bottom button { padding: 8px; font-size: 12px; }
+      .song-links a { padding: 8px 6px; font-size: 11px; }
+    }
 
     /* ── Responsividade ── */
     @media (min-width: 500px) {
@@ -667,21 +675,28 @@ const SECTIONS = [
 
 let currentSong = null;
 
+/* ── Mapa id → posição na seção ── */
+const songPosition = {}; // { songId: { pos: N, total: T, secLabel: L } }
+SECTIONS.forEach(sec => {
+  sec.ids.forEach((id, idx) => {
+    songPosition[id] = { pos: idx + 1, total: sec.ids.length, label: sec.label };
+  });
+});
+
 /* ── Renderizar índice ── */
 function buildIndex() {
   const container = document.getElementById("list-container");
   let html = "";
 
-  const sections2 = SECTIONS;
-
-  sections2.forEach(sec => {
+  SECTIONS.forEach(sec => {
     html += `<div class="section-label">${sec.label}</div><div class="music-list">`;
-    sec.ids.forEach(id => {
+    sec.ids.forEach((id, idx) => {
       const s = SONGS.find(x => x.id === id);
       if (!s) return;
+      const pos = idx + 1;
       html += `
         <button onclick="openSong(${s.id})">
-          <span class="num">${s.id}</span>
+          <span class="num">${pos}</span>
           <span class="info">
             <span>${s.titulo}</span>
             <span class="artista">${s.interprete}</span>
@@ -719,7 +734,10 @@ function openSong(id) {
   document.getElementById("view-song").classList.add("active");
 
   /* header */
-  document.getElementById("track-num").textContent = `${song.id} / ${SONGS.length}`;
+  const sp = songPosition[song.id];
+  document.getElementById("track-num").textContent = sp
+    ? `${sp.pos} / ${sp.total}`
+    : `${song.id} / ${SONGS.length}`;
   document.getElementById("song-title").textContent = song.titulo;
 
   let metaHtml = `<span>${song.interprete}</span>
@@ -731,9 +749,10 @@ function openSong(id) {
   document.getElementById("song-links").innerHTML = `
     <a href="${song.yt}"    class="yt"    target="_blank">▶ YouTube</a>`;
 
-  /* prev / next */
-  document.getElementById("btn-prev").disabled = (song.id === 1);
-  document.getElementById("btn-next").disabled = (song.id === SONGS.length);
+  /* prev / next baseado na posição da seção */
+  const _sp = songPosition[song.id];
+  document.getElementById("btn-prev").disabled = !_sp || _sp.pos === 1;
+  document.getElementById("btn-next").disabled = !_sp || _sp.pos === _sp.total;
 
   /* letra */
   loadLyrics(song);
@@ -742,8 +761,15 @@ function openSong(id) {
 
 function navSong(dir) {
   if (!currentSong) return;
-  const next = SONGS.find(s => s.id === currentSong.id + dir);
-  if (next) openSong(next.id);
+  const sp = songPosition[currentSong.id];
+  if (!sp) return;
+  const sec = SECTIONS.find(s => s.label === sp.label);
+  if (!sec) return;
+  const curIdx = sec.ids.indexOf(currentSong.id);
+  const nextIdx = curIdx + dir;
+  if (nextIdx >= 0 && nextIdx < sec.ids.length) {
+    openSong(sec.ids[nextIdx]);
+  }
 }
 
 /* ── Buscar letra no letras2.js por id ── */
