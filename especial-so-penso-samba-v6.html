@@ -56,6 +56,15 @@
       letter-spacing: 0.5px;
     }
     .toplogos .sep { opacity:.4; }
+    .toplogo-link {
+      color: var(--verde);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1.5px solid var(--verde-claro);
+      padding-bottom: 1px;
+      transition: opacity .2s;
+    }
+    .toplogo-link:hover { opacity: .7; }
     .title { text-align: center; margin-top: 10px; }
     .title small {
       display: block;
@@ -262,6 +271,7 @@
       flex-shrink: 0;
     }
     .music-list button .info { display:flex; flex-direction:column; gap:1px; flex:1; }
+    .music-list button .info > span:first-child { font-size:14px; font-weight:700; color: var(--verde); }
     .music-list button .info .artista { font-size:11px; font-weight:400; color:#888; }
     .music-list button .cantor-tag {
       margin-left: auto;
@@ -328,7 +338,7 @@
     }
     .song-nav button:hover { background:rgba(255,255,255,.25); }
     .song-nav .track-num { font-size:11px; font-weight:700; letter-spacing:2px; opacity:.65; }
-    .song-header h2 { font-size:20px; line-height:1.15; margin-bottom:8px; position:relative; z-index:1; }
+    .song-header h2 { font-size:22px; line-height:1.15; margin-bottom:8px; position:relative; z-index:1; font-family:'Playfair Display',serif; letter-spacing:.3px; text-shadow: 0 1px 4px rgba(0,0,0,.18); }
     .song-meta { display:flex; flex-wrap:wrap; gap:7px; align-items:center; position:relative; z-index:1; }
     .song-meta span { font-size:12px; opacity:.9; }
     .tom-badge { background:var(--dourado); color:#1d1d1d; border-radius:7px; padding:2px 9px; font-size:11px; font-weight:700; }
@@ -456,13 +466,13 @@
       .slogan      { font-size:48px; }
       .event-card strong { font-size:34px; }
       .music-list button { font-size:15px; }
-      .song-header h2 { font-size:24px; }
+      .song-header h2 { font-size:26px; }
     }
     @media (min-width: 640px) {
       .title h1    { font-size:86px; }
       .artist-pill { font-size:28px; }
       .slogan      { font-size:56px; }
-      .song-header h2 { font-size:28px; }
+      .song-header h2 { font-size:30px; }
     }
     /* Celular deitado */
     @media (max-height: 500px) {
@@ -483,7 +493,7 @@
   <!-- ══ CAPA ══ -->
   <div id="capa">
     <div class="toplogos">
-      <span>Natal Bier</span><span class="sep">&amp;</span><span>Palco Pôr do Sol</span>
+      <a href="https://instagram.com/natal_bier" target="_blank" class="toplogo-link">Natal Bier</a><span class="sep">&amp;</span><a href="https://instagram.com/palcopordosol" target="_blank" class="toplogo-link">Palco Pôr do Sol</a>
     </div>
     <div class="title">
       <small>APRESENTAM</small>
@@ -621,8 +631,8 @@ const SONGS = [
   ];
 const SECTIONS = [
 
-  { label:"19h30: Val & Anderson",            ids: [40,41,42,43,44, 33,34,35,36,37,38,39] },
-  { label:"20h30: Jones do Samba", ids: [2,13,27,20,22,8,24,25,29,14,15,48,49,50,51,10,11,30,17,16,3,9,1,19,4,5,26,45,46,6,32] },
+  { label:"19h30: Esquenta",            ids: [40,41,42,43,44, 33,34,35,36,37,38,39] },
+  { label:"20h30: Só Penso Samba", ids: [2,13,27,20,22,8,24,25,29,14,15,48,49,50,51,10,11,30,17,16,3,9,1,19,4,5,26,45,46,6,32] },
 ];
 /* ── Mapa id → posição na seção ── */
 const songPosition = {};
